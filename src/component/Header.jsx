@@ -8,13 +8,23 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenSearch, setIsOpenSearch] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+  const [isOpenCard, setIsOpenCard] = useState(false);
+  const [isClosingCard, setIsClosingCard] = useState(false);
+
+  const handleCloseCard = () => {
+    setIsClosingCard(true);
+    setTimeout(() => {
+      setIsOpenCard(false);
+      setIsClosingCard(false);
+    }, 300); // অ্যানিমেশন ডিউরেশনের সাথে মিল রাখতে হবে
+  };
 
   return (
     <>
       {/* click the menu icon then show this item */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-white/30 backdrop-blur-[6px] z-40"
+          className="fixed inset-0 bg-white/30 backdrop-blur-sm z-40"
           onClick={() => setIsOpen(false)}
         ></div>
       )}
@@ -45,7 +55,7 @@ export default function Header() {
           </a>
         </nav>
       </div>
-      {/* click to search icon then show this item  */}
+      {/* click to search icon then show this item */}
       {isOpenSearch && (
         <div className="fixed top-0 left-0 w-full h-full z-50 bg-white/40 backdrop-blur-sm">
           <div
@@ -101,6 +111,45 @@ export default function Header() {
           </div>
         </div>
       )}
+      {/* click the cart button then show this item  */}
+      {isOpenCard && (
+        <>
+          {/* Overlay */}
+          <div
+            className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40"
+            onClick={handleCloseCard}
+          ></div>
+
+          {/* Slide Drawer */}
+          <div
+            className={`fixed top-0 right-0 h-full w-full sm:w-[350px] bg-white z-50 shadow-lg p-6 flex flex-col ${
+              isClosingCard ? "animate-slideOutRight" : "animate-slideInRight"
+            }`}
+          >
+            <button
+              onClick={handleCloseCard}
+              className="absolute top-4 left-4 text-gray-700 hover:text-red-500 hover:border hover:rounded-full p-1"
+            >
+              <X size={24} />
+            </button>
+            <div className="flex-grow pt-5">
+              <div className="divider"></div>
+              <h2 className="text-lg font-semibold mb-6">
+                You want to buy these products.
+              </h2>
+            </div>
+
+            <div className="mt-auto">
+              <Link href={'/add_cart'}>
+                <button className="w-full cursor-pointer bg-black text-white py-2 rounded hover:bg-gray-800 transition">
+                  Go to all products
+                </button>
+              </Link>
+            </div>
+          </div>
+        </>
+      )}
+
       {/* ------------------------------------------------------- */}
       <div className="flex justify-between items-center w-[100%] h-30  px-8">
         <div>
@@ -137,16 +186,20 @@ export default function Header() {
           <button className="cursor-pointer hover:border hover:rounded-full p-1 hidden lg:block md:block">
             <UserRound />
           </button>
-          <Link
-            href={"/add_cart"}
+          <button
+            onClick={() => {
+              setIsOpenCard(true);
+              setIsClosingCard(false); // কার্ট খোলার সময় isClosingCard false থাকবে
+            }}
             className="cursor-pointer hover:border hover:rounded-full p-1"
           >
             <ShoppingBag />
-          </Link>
+          </button>
         </div>
       </div>
 
       <style jsx>{`
+        /* Search Animations */
         .animate-slideDown {
           animation: slideDown 0.3s ease-out forwards;
         }
@@ -173,6 +226,37 @@ export default function Header() {
           }
           100% {
             transform: translateY(-100%);
+            opacity: 0;
+          }
+        }
+
+        /* Cart Animations */
+        .animate-slideInRight {
+          animation: slideInRight 0.3s ease-out forwards;
+        }
+
+        .animate-slideOutRight {
+          animation: slideOutRight 0.3s ease-in forwards;
+        }
+
+        @keyframes slideInRight {
+          0% {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+          100% {
+            transform: translateX(0%);
+            opacity: 1;
+          }
+        }
+
+        @keyframes slideOutRight {
+          0% {
+            transform: translateX(0%);
+            opacity: 1;
+          }
+          100% {
+            transform: translateX(100%);
             opacity: 0;
           }
         }
