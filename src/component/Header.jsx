@@ -1,12 +1,13 @@
 "use client";
 import { AlignJustify, Search, ShoppingBag, UserRound, X } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenSearch, setIsOpenSearch] = useState(false);
-  console.log(isOpenSearch);
+  const [isClosing, setIsClosing] = useState(false);
 
   return (
     <>
@@ -28,6 +29,7 @@ export default function Header() {
         >
           <X size={28} />
         </button>
+        <div className="divider"></div>
         <nav className="flex flex-col gap-4">
           <a href="#" className="text-lg font-semibold">
             Home
@@ -46,10 +48,28 @@ export default function Header() {
       {/* click to search icon then show this item  */}
       {isOpenSearch && (
         <div className="fixed top-0 left-0 w-full h-full z-50 bg-white/40 backdrop-blur-sm">
-          <div className="w-full bg-white px-4 sm:px-10 py-20 shadow-lg animate-slideDown relative">
+          <div
+            className={`w-full bg-white px-4 sm:px-10 py-10 shadow-lg ${
+              isClosing ? "animate-slideUp" : "animate-slideDown"
+            } relative`}
+          >
+            <div className="flex justify-center">
+              <Image
+                src="http://zaylio.com/cdn/shop/files/IMG_7837_fdf1f912-f737-4279-bc0b-8166051a6150.jpg?v=1744288937&width=200"
+                alt="alt"
+                width={200}
+                height={200}
+              />
+            </div>
             {/* Close button */}
             <button
-              onClick={() => setIsOpenSearch(false)}
+              onClick={() => {
+                setIsClosing(true);
+                setTimeout(() => {
+                  setIsOpenSearch(false);
+                  setIsClosing(false);
+                }, 300); // duration = 0.3s
+              }}
               className="absolute top-6 right-6 text-gray-500 hover:text-red-500 cursor-pointer hover:border hover:rounded-full p-1"
             >
               <X size={24} />
@@ -81,7 +101,6 @@ export default function Header() {
           </div>
         </div>
       )}
-
       {/* ------------------------------------------------------- */}
       <div className="flex justify-between items-center w-[100%] h-30  px-8">
         <div>
@@ -99,12 +118,14 @@ export default function Header() {
           </button>
         </div>
         <div>
-          <Image
-            src="http://zaylio.com/cdn/shop/files/IMG_7837_fdf1f912-f737-4279-bc0b-8166051a6150.jpg?v=1744288937&width=200"
-            alt="alt"
-            width={200}
-            height={200}
-          />
+          <Link href={"/"} className="cursor-pointer">
+            <Image
+              src="http://zaylio.com/cdn/shop/files/IMG_7837_fdf1f912-f737-4279-bc0b-8166051a6150.jpg?v=1744288937&width=200"
+              alt="alt"
+              width={200}
+              height={200}
+            />
+          </Link>
         </div>
         <div className="flex justify-center items-center gap-4">
           <button
@@ -116,16 +137,24 @@ export default function Header() {
           <button className="cursor-pointer hover:border hover:rounded-full p-1 hidden lg:block md:block">
             <UserRound />
           </button>
-          <button className="cursor-pointer hover:border hover:rounded-full p-1">
+          <Link
+            href={"/add_cart"}
+            className="cursor-pointer hover:border hover:rounded-full p-1"
+          >
             <ShoppingBag />
-          </button>
+          </Link>
         </div>
       </div>
 
       <style jsx>{`
         .animate-slideDown {
-          animation: slideDown 0.3s ease-out;
+          animation: slideDown 0.3s ease-out forwards;
         }
+
+        .animate-slideUp {
+          animation: slideUp 0.3s ease-in forwards;
+        }
+
         @keyframes slideDown {
           0% {
             transform: translateY(-100%);
@@ -134,6 +163,17 @@ export default function Header() {
           100% {
             transform: translateY(0%);
             opacity: 1;
+          }
+        }
+
+        @keyframes slideUp {
+          0% {
+            transform: translateY(0%);
+            opacity: 1;
+          }
+          100% {
+            transform: translateY(-100%);
+            opacity: 0;
           }
         }
       `}</style>
