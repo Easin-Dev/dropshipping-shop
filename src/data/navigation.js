@@ -1,5 +1,3 @@
-// data/navigation.js
-
 export const allCategories = [
     { name: 'Mobile Essentials', href: '/collections/mobile-essentials' },
     { name: 'Audio Zone', href: '/collections/audio' },

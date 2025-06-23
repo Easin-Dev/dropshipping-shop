@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { AlignJustify, Search, ShoppingBag, UserRound } from "lucide-react";
 
-import { navLinks } from "../data/navigation";
+import { navLinks } from "../../data/navigation";
 import DesktopNav from "./DesktopNav";
 import MobileDrawer from "./MobileDrawer";
 import SearchPopup from "./SearchPopup";

@@ -1,4 +1,3 @@
-// components/DesktopNav.jsx
 "use client";
 
 import { useState } from 'react';
