@@ -10,18 +10,28 @@ export default function Header() {
   const [isClosing, setIsClosing] = useState(false);
   const [isOpenCard, setIsOpenCard] = useState(false);
   const [isClosingCard, setIsClosingCard] = useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isLoginClosing, setIsLoginClosing] = useState(false);
 
   const handleCloseCard = () => {
     setIsClosingCard(true);
     setTimeout(() => {
       setIsOpenCard(false);
       setIsClosingCard(false);
-    }, 300); // অ্যানিমেশন ডিউরেশনের সাথে মিল রাখতে হবে
+    }, 300);
+  };
+
+  const handleLoginClose = () => {
+    setIsLoginClosing(true);
+    setTimeout(() => {
+      setIsLoginOpen(false);
+      setIsLoginClosing(false);
+    }, 300);
   };
 
   return (
     <>
-      {/* click the menu icon then show this item */}
+      {/* Side Menu */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-white/30 backdrop-blur-sm z-40"
@@ -55,7 +65,8 @@ export default function Header() {
           </a>
         </nav>
       </div>
-      {/* click to search icon then show this item */}
+
+      {/* Search Popup */}
       {isOpenSearch && (
         <div className="fixed top-0 left-0 w-full h-full z-50 bg-white/40 backdrop-blur-sm">
           <div
@@ -71,27 +82,19 @@ export default function Header() {
                 height={200}
               />
             </div>
-            {/* Close button */}
             <button
               onClick={() => {
                 setIsClosing(true);
                 setTimeout(() => {
                   setIsOpenSearch(false);
                   setIsClosing(false);
-                }, 300); // duration = 0.3s
+                }, 300);
               }}
               className="absolute top-6 right-6 text-gray-500 hover:text-red-500 cursor-pointer hover:border hover:rounded-full p-1"
             >
               <X size={24} />
             </button>
-
-            {/* Search Input */}
-            <form
-              action="/search"
-              method="get"
-              role="search"
-              className="max-w-2xl mx-auto"
-            >
+            <form action="/search" method="get" role="search" className="max-w-2xl mx-auto">
               <div className="flex items-center border border-gray-300 rounded-md overflow-hidden">
                 <input
                   type="search"
@@ -100,10 +103,7 @@ export default function Header() {
                   autoComplete="off"
                   className="w-full px-4 py-2 outline-none"
                 />
-                <button
-                  type="submit"
-                  className="px-4 text-gray-500 hover:text-black cursor-pointer"
-                >
+                <button type="submit" className="px-4 text-gray-500 hover:text-black cursor-pointer">
                   <Search size={20} />
                 </button>
               </div>
@@ -111,16 +111,11 @@ export default function Header() {
           </div>
         </div>
       )}
-      {/* click the cart button then show this item  */}
+      
+      {/* Shopping Cart Drawer */}
       {isOpenCard && (
         <>
-          {/* Overlay */}
-          <div
-            className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40"
-            onClick={handleCloseCard}
-          ></div>
-
-          {/* Slide Drawer */}
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40" onClick={handleCloseCard}></div>
           <div
             className={`fixed top-0 right-0 h-full w-full sm:w-[350px] bg-white z-50 shadow-lg p-6 flex flex-col ${
               isClosingCard ? "animate-slideOutRight" : "animate-slideInRight"
@@ -132,16 +127,12 @@ export default function Header() {
             >
               <X size={24} />
             </button>
-            <div className="flex-grow pt-5">
-              <div className="divider"></div>
-              <h2 className="text-lg font-semibold mb-6">
-                You want to buy these products.
-              </h2>
+            <div className="flex-grow pt-16">
+              <h2 className="text-lg font-semibold mb-6">You want to buy these products.</h2>
             </div>
-
             <div className="mt-auto">
-              <Link href={'/add_cart'}>
-                <button className="w-full cursor-pointer bg-black text-white py-2 rounded hover:bg-gray-800 transition">
+              <Link href="/abb_cart">
+                <button className="w-full bg-black text-white py-2 rounded hover:bg-gray-800 transition">
                   Go to all products
                 </button>
               </Link>
@@ -150,8 +141,62 @@ export default function Header() {
         </>
       )}
 
+      {/* ============== নতুন Login/Register Modal ============== */}
+      {isLoginOpen && (
+        <>
+          <div
+            className="fixed inset-0 bg-white/40 backdrop-blur-sm z-50"
+            onClick={handleLoginClose}
+          ></div>
+
+          {/* Modal Card Centering Wrapper */}
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-0 sm:p-4">
+            <div
+              className={`bg-white w-full h-full sm:rounded-lg sm:h-auto sm:max-w-md relative p-8 shadow-xl ${
+                isLoginClosing ? "animate-fadeOutScale" : "animate-fadeInScale"
+              }`}
+              onClick={(e) => e.stopPropagation()} // কার্ডের ভেতরে ক্লিক করলে যেন বন্ধ না হয়
+            >
+              {/* Close Button */}
+              <button
+                onClick={handleLoginClose}
+                className="absolute top-4 right-4 text-gray-500 hover:text-red-500 cursor-pointer hover:border hover:rounded-full p-1"
+              >
+                <X size={24} />
+              </button>
+
+              {/* Modal Content */}
+              <h2 className="text-2xl font-bold text-center mb-6">
+                Login and Register
+              </h2>
+              <form>
+                <div className="mb-4">
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                    BD Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="01xxxxxxxxx"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-black"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="w-full bg-black text-white py-3 rounded-md hover:bg-gray-800 transition font-semibold"
+                >
+                  Continue
+                </button>
+              </form>
+            </div>
+          </div>
+        </>
+      )}
+
       {/* ------------------------------------------------------- */}
-      <div className="flex justify-between items-center w-[100%] h-30  px-8">
+      {/* Header Bar */}
+      <div className="flex justify-between items-center w-full h-30 px-8">
         <div>
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -183,13 +228,19 @@ export default function Header() {
           >
             <Search />
           </button>
-          <button className="cursor-pointer hover:border hover:rounded-full p-1 hidden lg:block md:block">
+          <button
+            onClick={() => {
+              setIsLoginOpen(true);
+              setIsLoginClosing(false);
+            }}
+            className="cursor-pointer hover:border hover:rounded-full p-1 hidden lg:block md:block"
+          >
             <UserRound />
           </button>
           <button
             onClick={() => {
               setIsOpenCard(true);
-              setIsClosingCard(false); // কার্ট খোলার সময় isClosingCard false থাকবে
+              setIsClosingCard(false);
             }}
             className="cursor-pointer hover:border hover:rounded-full p-1"
           >
@@ -200,65 +251,38 @@ export default function Header() {
 
       <style jsx>{`
         /* Search Animations */
-        .animate-slideDown {
-          animation: slideDown 0.3s ease-out forwards;
-        }
-
-        .animate-slideUp {
-          animation: slideUp 0.3s ease-in forwards;
-        }
-
+        .animate-slideDown { animation: slideDown 0.3s ease-out forwards; }
+        .animate-slideUp { animation: slideUp 0.3s ease-in forwards; }
         @keyframes slideDown {
-          0% {
-            transform: translateY(-100%);
-            opacity: 0;
-          }
-          100% {
-            transform: translateY(0%);
-            opacity: 1;
-          }
+          0% { transform: translateY(-100%); opacity: 0; }
+          100% { transform: translateY(0%); opacity: 1; }
         }
-
         @keyframes slideUp {
-          0% {
-            transform: translateY(0%);
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(-100%);
-            opacity: 0;
-          }
+          0% { transform: translateY(0%); opacity: 1; }
+          100% { transform: translateY(-100%); opacity: 0; }
         }
 
         /* Cart Animations */
-        .animate-slideInRight {
-          animation: slideInRight 0.3s ease-out forwards;
-        }
-
-        .animate-slideOutRight {
-          animation: slideOutRight 0.3s ease-in forwards;
-        }
-
+        .animate-slideInRight { animation: slideInRight 0.3s ease-out forwards; }
+        .animate-slideOutRight { animation: slideOutRight 0.3s ease-in forwards; }
         @keyframes slideInRight {
-          0% {
-            transform: translateX(100%);
-            opacity: 0;
-          }
-          100% {
-            transform: translateX(0%);
-            opacity: 1;
-          }
+          0% { transform: translateX(100%); opacity: 0; }
+          100% { transform: translateX(0%); opacity: 1; }
+        }
+        @keyframes slideOutRight {
+          0% { transform: translateX(0%); opacity: 1; }
+          100% { transform: translateX(100%); opacity: 0; }
         }
 
-        @keyframes slideOutRight {
-          0% {
-            transform: translateX(0%);
-            opacity: 1;
-          }
-          100% {
-            transform: translateX(100%);
-            opacity: 0;
-          }
+        .animate-fadeInScale { animation: fadeInScale 0.3s ease-out forwards; }
+        .animate-fadeOutScale { animation: fadeOutScale 0.3s ease-in forwards; }
+        @keyframes fadeInScale {
+          0% { opacity: 0; transform: scale(0.95); }
+          100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes fadeOutScale {
+          0% { opacity: 1; transform: scale(1); }
+          100% { opacity: 0; transform: scale(0.95); }
         }
       `}</style>
     </>
