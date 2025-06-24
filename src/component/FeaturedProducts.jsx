@@ -79,7 +79,7 @@ export default function FeaturedProducts() {
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10">
           {products.map((product) => (
-            <Link href={`/products/${product.id}`} key={product.id} className="group">
+            <Link href={`/all_products/${product.id}`} key={product.id} className="group">
               
               <div className="flex flex-col h-full overflow-hidden">
                
@@ -108,8 +108,8 @@ export default function FeaturedProducts() {
           ))}
         </div>
         <div className="text-center mt-16">
-            <Link href="/collections/all">
-                <button className="px-8 py-3 bg-gray-800 text-white rounded-full font-bold transition-colors hover:bg-gray-900">
+            <Link href="/all_products ">
+                <button className="px-8 py-3 bg-gray-800 text-white rounded-full font-bold transition-colors hover:bg-gray-900 cursor-pointer">
                     View All Products
                 </button>
             </Link>
