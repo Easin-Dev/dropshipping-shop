@@ -102,7 +102,7 @@ export default function AddCartPage() {
               <span>৳ {totalPrice.toLocaleString()}</span>
             </div>
             <Link href="/checkout">
-              <button className="w-full mt-6 bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 font-bold text-lg">
+              <button className="w-full mt-6 bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 font-bold text-lg cursor-pointer">
                 Proceed to Checkout
               </button>
             </Link>
