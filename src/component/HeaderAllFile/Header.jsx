@@ -12,6 +12,7 @@ import MobileDrawer from "./MobileDrawer";
 import SearchPopup from "./SearchPopup";
 import CartDrawer from "./CartDrawer";
 import LoginModal from "./LoginModal";
+import { useCart } from "@/context/cartContext";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -19,6 +20,7 @@ export default function Header() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
 
+  const { cartCount } = useCart(); 
   const pathname = usePathname();
 
   return (
@@ -87,6 +89,11 @@ export default function Header() {
               className="p-1 cursor-pointer hover:border rounded-full"
             >
               <ShoppingBag />
+              {cartCount > 0 && (
+                <span className="absolute top-8 right-10 block h-4 w-4 rounded-full bg-blue-600 text-white text-xs flex items-center justify-center transform translate-x-1/2 -translate-y-1/2">
+                  {cartCount}
+                </span>
+              )}
             </button>
           </div>
         </div>

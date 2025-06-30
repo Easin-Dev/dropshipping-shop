@@ -25,7 +25,7 @@ export default function SearchPopup({ isOpen, onClose }) {
         <div className="flex justify-center">
           <Image src="http://zaylio.com/cdn/shop/files/IMG_7837_fdf1f912-f737-4279-bc0b-8166051a6150.jpg?v=1744288937&width=200" alt="alt" width={200} height={200} />
         </div>
-        <button onClick={handleClose} className="absolute top-6 right-6 text-gray-500 hover:text-red-500 p-1">
+        <button onClick={handleClose} className="absolute top-6 right-6 text-gray-500 hover:text-red-500 p-1 hover:border rounded-full cursor-pointer">
           <X size={24} />
         </button>
         <form action="/search" method="get" role="search" className="max-w-2xl mx-auto">

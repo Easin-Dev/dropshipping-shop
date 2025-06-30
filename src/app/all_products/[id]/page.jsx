@@ -3,12 +3,13 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Minus, Plus, Star, Heart } from 'lucide-react';
+import { Minus, Plus, Star, Heart, CheckCircle } from 'lucide-react';
+import { useCart } from '@/context/cartContext'; // Cart context import korun
 
+// --- Loading Skeleton Component ---
 const ProductDetailsSkeleton = () => (
     <div className="container mx-auto px-4 py-8 md:py-16 animate-pulse">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            {/* Image Skeleton */}
             <div>
                 <div className="relative w-full aspect-square rounded-lg bg-gray-300 mb-4"></div>
                 <div className="flex gap-4">
@@ -17,29 +18,16 @@ const ProductDetailsSkeleton = () => (
                     <div className="w-24 h-24 rounded-md bg-gray-300"></div>
                 </div>
             </div>
-
-            {/* Details Skeleton */}
             <div className="flex flex-col">
                 <div className="h-10 bg-gray-300 rounded w-3/4 mb-4"></div>
                 <div className="h-6 bg-gray-300 rounded w-1/2 mb-4"></div>
                 <div className="h-12 bg-gray-300 rounded w-1/3 mb-6"></div>
-                <div className="space-y-3">
-                    <div className="h-4 bg-gray-300 rounded w-full"></div>
-                    <div className="h-4 bg-gray-300 rounded w-full"></div>
-                    <div className="h-4 bg-gray-300 rounded w-5/6"></div>
-                </div>
-                <div className="mt-8 pt-8 border-t border-gray-200">
-                    <div className="h-12 bg-gray-300 rounded w-full"></div>
-                </div>
-                <div className="mt-6 pt-6 border-t border-gray-200 space-y-3">
-                    <div className="h-4 bg-gray-300 rounded w-1/4"></div>
-                    <div className="h-4 bg-gray-300 rounded w-1/3"></div>
-                </div>
+                <div className="space-y-3"><div className="h-4 bg-gray-300 rounded w-full"></div><div className="h-4 bg-gray-300 rounded w-full"></div><div className="h-4 bg-gray-300 rounded w-5/6"></div></div>
+                <div className="mt-8 pt-8 border-t border-gray-200"><div className="h-12 bg-gray-300 rounded w-full"></div></div>
             </div>
         </div>
     </div>
 );
-
 
 export default function ProductDetailsPage({ params }) {
     const { id } = params;
@@ -47,8 +35,11 @@ export default function ProductDetailsPage({ params }) {
     const [isLoading, setIsLoading] = useState(true);
     const [quantity, setQuantity] = useState(1);
     const [mainImage, setMainImage] = useState(null);
+    const [addedToCart, setAddedToCart] = useState(false);
 
-    // API theke nirdishto product er data fetch
+    // Context theke addToCart function nin
+    const { addToCart } = useCart();
+
     useEffect(() => {
         if (!id) return;
         const fetchProduct = async () => {
@@ -73,16 +64,18 @@ export default function ProductDetailsPage({ params }) {
         setQuantity(prev => Math.max(1, prev + amount));
     };
 
-    // isLoading true thakle Skeleton dekhano
-    if (isLoading) {
-        return <ProductDetailsSkeleton />;
-    }
+    // ADD TO CART button er jonno function
+    const handleAddToCart = () => {
+        if (!product) return;
+        addToCart(product, quantity);
+        setAddedToCart(true);
+        setTimeout(() => setAddedToCart(false), 3000); // 3 second por success message chole jabe
+    };
 
-    if (!product) {
-        return <div className="h-screen flex items-center justify-center">Product not found!</div>;
-    }
+    if (isLoading) return <ProductDetailsSkeleton />;
+    if (!product) return <div className="h-screen flex items-center justify-center">Product not found!</div>;
     
-    const imageGallery = [product.imageUrl, 'https://images.unsplash.com/photo-1593305842137-758b974a279c?q=80&w=1964&auto-format&fit=crop', 'https://images.unsplash.com/photo-1593305842137-758b974a279c?q=80&w=1964&auto-format&fit=crop'];
+    const imageGallery = [product.imageUrl, 'https://images.unsplash.com/photo-1593305842137-758b974a279c?q=80&w=1964&auto=format&fit=crop', 'https://images.unsplash.com/photo-1593305842137-758b974a279c?q=80&w=1964&auto=format&fit=crop'];
 
   return (
     <div className="bg-white">
@@ -126,9 +119,15 @@ export default function ProductDetailsPage({ params }) {
                                 <span className="px-6 py-3 font-bold text-lg">{quantity}</span>
                                 <button onClick={() => handleQuantityChange(1)} className="px-4 py-3"><Plus size={16}/></button>
                             </div>
-                            <button className="w-full sm:w-auto flex-grow bg-blue-600 text-white font-bold py-3 px-8 rounded-lg">ADD TO CART</button>
+                            <button onClick={handleAddToCart} className="w-full sm:w-auto flex-grow bg-blue-600 text-white font-bold py-3 px-8 rounded-lg cursor-pointer">ADD TO CART</button>
                             <button className="p-3 border rounded-lg hover:bg-gray-100"><Heart className="text-gray-600"/></button>
                         </div>
+                        {addedToCart && (
+                            <div className="mt-4 flex items-center justify-center gap-2 text-green-600 font-semibold">
+                                <CheckCircle size={20} />
+                                <span>Successfully added to cart!</span>
+                            </div>
+                        )}
                     </div>
                     <div className="mt-6 pt-6 border-t border-gray-200 text-sm">
                         <p><span className="font-semibold text-gray-700">SKU:</span> {product.sku}</p>

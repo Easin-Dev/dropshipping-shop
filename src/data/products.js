@@ -50,5 +50,52 @@ export const allProducts = [
         sku: 'TF-K-004',
         tags: ['Keyboard', 'Mechanical', 'RGB']
     },
-    // Ekhane aro product jog korte paren...
+    { 
+        id: 4, 
+        name: 'Mechanical RGB Keyboard', 
+        vendor: 'TypeFast', 
+        price: 6200, 
+        imageUrl: 'https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?q=80&w=2070&auto=format&fit=crop', 
+        imageAlt: 'Mechanical keyboard', 
+        category: 'Computer Accessories',
+        description: 'Dominate the competition with a responsive and durable mechanical keyboard. Featuring customizable RGB lighting and satisfying tactile feedback.',
+        sku: 'TF-K-004',
+        tags: ['Keyboard', 'Mechanical', 'RGB']
+    },
+    { 
+        id: 4, 
+        name: 'Mechanical RGB Keyboard', 
+        vendor: 'TypeFast', 
+        price: 6200, 
+        imageUrl: 'https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?q=80&w=2070&auto=format&fit=crop', 
+        imageAlt: 'Mechanical keyboard', 
+        category: 'Computer Accessories',
+        description: 'Dominate the competition with a responsive and durable mechanical keyboard. Featuring customizable RGB lighting and satisfying tactile feedback.',
+        sku: 'TF-K-004',
+        tags: ['Keyboard', 'Mechanical', 'RGB']
+    },
+    { 
+        id: 4, 
+        name: 'Mechanical RGB Keyboard', 
+        vendor: 'TypeFast', 
+        price: 6200, 
+        imageUrl: 'https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?q=80&w=2070&auto=format&fit=crop', 
+        imageAlt: 'Mechanical keyboard', 
+        category: 'Computer Accessories',
+        description: 'Dominate the competition with a responsive and durable mechanical keyboard. Featuring customizable RGB lighting and satisfying tactile feedback.',
+        sku: 'TF-K-004',
+        tags: ['Keyboard', 'Mechanical', 'RGB']
+    },
+    { 
+        id: 4, 
+        name: 'Mechanical RGB Keyboard', 
+        vendor: 'TypeFast', 
+        price: 6200, 
+        imageUrl: 'https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?q=80&w=2070&auto=format&fit=crop', 
+        imageAlt: 'Mechanical keyboard', 
+        category: 'Computer Accessories',
+        description: 'Dominate the competition with a responsive and durable mechanical keyboard. Featuring customizable RGB lighting and satisfying tactile feedback.',
+        sku: 'TF-K-004',
+        tags: ['Keyboard', 'Mechanical', 'RGB']
+    },
 ];

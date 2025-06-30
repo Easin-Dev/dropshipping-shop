@@ -1,44 +1,43 @@
 "use client";
 
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import Image from 'next/image';
-import Link from 'next/link';
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import Image from "next/image";
+import Link from "next/link";
 
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 const slidesData = [
   {
-    type: 'image',
-    src: 'https://images.unsplash.com/photo-1550009158-94ae7655244d?q=80&w=1974&auto=format&fit=crop',
-    alt: 'Gaming setup with neon lights',
-    title: 'Upgrade Your Gaming Setup',
-    subtitle: 'Explore our new collection of high-performance gaming gear.',
-    buttonText: 'Shop Gaming Gear',
-    buttonLink: '/collections/gaming-gear'
+    type: "image",
+    src: "https://images.unsplash.com/photo-1550009158-94ae7655244d?q=80&w=1974&auto=format&fit=crop",
+    alt: "Gaming setup with neon lights",
+    title: "Upgrade Your Gaming Setup",
+    subtitle: "Explore our new collection of high-performance gaming gear.",
+    buttonText: "Shop Gaming Gear",
+    buttonLink: "/collections/gaming-gear",
   },
   {
-    type: 'video',
-    src: 'https://assets.mixkit.co/videos/preview/mixkit-man-in-a-suit-walking-through-a-futuristic-tunnel-4729-large.mp4',
-    title: 'Step into the Future',
-    subtitle: 'Discover the latest in smart home and wearable technology.',
-    buttonText: 'Explore Smart Devices',
-    buttonLink: '/collections/smart-home'
+    type: "video",
+    src: "",
+    title: "Step into the Future",
+    subtitle: "Discover the latest in smart home and wearable technology.",
+    buttonText: "Explore Smart Devices",
+    buttonLink: "/collections/smart-home",
   },
   {
-    type: 'image',
-    src: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop',
-    alt: 'Close-up of a computer motherboard',
-    title: 'Power and Performance',
-    subtitle: 'Find the best accessories to boost your computer\'s potential.',
-    buttonText: 'View Accessories',
-    buttonLink: '/collections/computer-accessories'
+    type: "image",
+    src: "",
+    alt: "Close-up of a computer motherboard",
+    title: "Power and Performance",
+    subtitle: "Find the best accessories to boost your computer's potential.",
+    buttonText: "View Accessories",
+    buttonLink: "/collections/computer-accessories",
   },
 ];
-
 
 export default function HeroSection() {
   return (
@@ -62,13 +61,12 @@ export default function HeroSection() {
         >
           {slidesData.map((slide, index) => (
             <SwiperSlide key={index} className="relative">
-              {/* স্লাইডের কনটেন্ট (ছবি অথবা ভিডিও) */}
-              {slide.type === 'image' ? (
+              {slide.type === "image" ? (
                 <Image
                   src={slide.src}
                   alt={slide.alt}
                   fill
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: "cover" }}
                   priority={index === 0}
                 />
               ) : (
@@ -81,7 +79,7 @@ export default function HeroSection() {
                   playsInline
                 />
               )}
-              
+
               <div className="absolute inset-0 bg-black/50"></div>
 
               <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10 p-4">
@@ -114,7 +112,7 @@ export default function HeroSection() {
         }
         .swiper-button-next:hover,
         .swiper-button-prev:hover {
-            background-color: rgba(0, 0, 0, 0.6);
+          background-color: rgba(0, 0, 0, 0.6);
         }
         .swiper-button-next::after,
         .swiper-button-prev::after {
@@ -132,19 +130,31 @@ export default function HeroSection() {
         }
 
         @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+          from {
+            opacity: 0;
+            transform: translateY(-20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
         .animate-fade-in-down {
-            animation: fadeInDown 0.8s ease-out forwards;
+          animation: fadeInDown 0.8s ease-out forwards;
         }
         .animate-fade-in-up {
-            animation: fadeInUp 0.8s ease-out 0.4s forwards;
-            opacity: 0;
+          animation: fadeInUp 0.8s ease-out 0.4s forwards;
+          opacity: 0;
         }
       `}</style>
     </>
