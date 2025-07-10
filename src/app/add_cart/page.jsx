@@ -49,7 +49,7 @@ export default function AddCartPage() {
                     <h3 className="font-bold text-lg pr-2">{item.name}</h3>
                     <button
                       onClick={() => removeFromCart(item.id)}
-                      className="text-gray-400 hover:text-red-500"
+                      className="text-gray-400 hover:text-red-500 hover:border rounded-full cursor-pointer"
                     >
                       <X size={20} />
                     </button>
