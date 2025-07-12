@@ -30,7 +30,7 @@ const ProductDetailsSkeleton = () => (
 );
 
 export default function ProductDetailsPage({ params }) {
-    const { id } = params;
+    const { _id } = params;
     const [product, setProduct] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [quantity, setQuantity] = useState(1);
@@ -41,11 +41,11 @@ export default function ProductDetailsPage({ params }) {
     const { addToCart } = useCart();
 
     useEffect(() => {
-        if (!id) return;
+        if (!_id) return;
         const fetchProduct = async () => {
             try {
                 setIsLoading(true);
-                const response = await fetch(`/api/products?id=${id}`);
+                const response = await fetch(`/api/products?_id=${_id}`);
                 if (!response.ok) throw new Error('Product not found');
                 const data = await response.json();
                 setProduct(data);
@@ -58,7 +58,7 @@ export default function ProductDetailsPage({ params }) {
             }
         };
         fetchProduct();
-    }, [id]);
+    }, [_id]);
     
     const handleQuantityChange = (amount) => {
         setQuantity(prev => Math.max(1, prev + amount));

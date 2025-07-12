@@ -1,24 +1,32 @@
-import { NextResponse } from 'next/server';
+// src/app/api/products/route.js
 
-import { allProducts } from '@/data/products'; 
+import { NextResponse } from "next/server";
+import { allProducts } from "@/data/products";
 
 export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
-    const id = searchParams.get('id');
+    const productId = searchParams.get("_id");
 
-    if (id) {
-      const product = allProducts.find(p => p.id === parseInt(id));
-      
+    if (productId) {
+      const product = allProducts.find((p) => p._id === productId);
+
       if (product) {
-        return NextResponse.json(product);
+        return NextResponse.json(product, { status: 200 });
       } else {
-        return NextResponse.json({ message: "Product not found" }, { status: 404 });
+        return NextResponse.json(
+          { message: "Product not found." },
+          { status: 404 }
+        );
       }
     } else {
-      return NextResponse.json(allProducts);
+      return NextResponse.json(allProducts, { status: 200 });
     }
   } catch (error) {
-    return NextResponse.json({ message: "Internal Server Error", error: error.message }, { status: 500 });
+    console.error("Error in API route:", error);
+    return NextResponse.json(
+      { message: "An error occurred.", error: error.message },
+      { status: 500 }
+    );
   }
 }

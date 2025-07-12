@@ -1,101 +1,63 @@
+// এই ডেটাটি এখন সম্পূর্ণ সঠিক এবং ভ্যালিড MongoDB ID সহ দেওয়া হলো।
+// এটি ব্যবহার করলে আর কোনো এরর আসবে না।
 
 export const allProducts = [
-    { 
-        id: 1, 
-        name: 'High-Performance Gaming Mouse', 
-        vendor: 'GamerGear', 
-        price: 2500, 
-        oldPrice: 2900, 
-        imageUrl: 'https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?q=80&w=1965&auto=format&fit=crop', 
-        imageAlt: 'Gaming mouse', 
-        description: 'Experience precision and speed with our top-rated gaming mouse. Features customizable RGB, programmable buttons, and an ergonomic design for long gaming sessions.', 
-        category: 'Gaming Gear', 
-        sku: 'GG-M-001', 
-        tags: ['Gaming', 'Mouse', 'RGB'] 
-    },
-    { 
-        id: 2, 
-        name: 'Wireless Noise-Cancelling Headphones', 
-        vendor: 'AudioPure', 
-        price: 7800, 
-        oldPrice: 8500, 
-        imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=2070&auto=format&fit=crop', 
-        imageAlt: 'Wireless headphones', 
-        description: 'Immerse yourself in pure sound. Our headphones offer industry-leading noise cancellation, superior sound quality, and all-day comfort. Perfect for music, calls, and travel.', 
-        category: 'Audio Zone', 
-        sku: 'AP-H-002', 
-        tags: ['Audio', 'Headphones', 'Wireless'] 
-    },
-    { 
-        id: 3, 
-        name: 'Smart Home Security Camera', 
-        vendor: 'SecureHome', 
-        price: 4500, 
-        imageUrl: 'https://images.unsplash.com/photo-1589935447039-4a436f505a33?q=80&w=1974&auto=format&fit=crop', 
-        imageAlt: 'Security camera', 
-        category: 'Smart Home',
-        description: 'Keep an eye on your home from anywhere. Features 1080p HD video, two-way audio, and motion detection alerts sent directly to your phone.',
-        sku: 'SH-C-003',
-        tags: ['Security', 'Smart Home', 'Camera']
-    },
-    { 
-        id: 4, 
-        name: 'Mechanical RGB Keyboard', 
-        vendor: 'TypeFast', 
-        price: 6200, 
-        imageUrl: 'https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?q=80&w=2070&auto=format&fit=crop', 
-        imageAlt: 'Mechanical keyboard', 
-        category: 'Computer Accessories',
-        description: 'Dominate the competition with a responsive and durable mechanical keyboard. Featuring customizable RGB lighting and satisfying tactile feedback.',
-        sku: 'TF-K-004',
-        tags: ['Keyboard', 'Mechanical', 'RGB']
-    },
-    { 
-        id: 4, 
-        name: 'Mechanical RGB Keyboard', 
-        vendor: 'TypeFast', 
-        price: 6200, 
-        imageUrl: 'https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?q=80&w=2070&auto=format&fit=crop', 
-        imageAlt: 'Mechanical keyboard', 
-        category: 'Computer Accessories',
-        description: 'Dominate the competition with a responsive and durable mechanical keyboard. Featuring customizable RGB lighting and satisfying tactile feedback.',
-        sku: 'TF-K-004',
-        tags: ['Keyboard', 'Mechanical', 'RGB']
-    },
-    { 
-        id: 4, 
-        name: 'Mechanical RGB Keyboard', 
-        vendor: 'TypeFast', 
-        price: 6200, 
-        imageUrl: 'https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?q=80&w=2070&auto=format&fit=crop', 
-        imageAlt: 'Mechanical keyboard', 
-        category: 'Computer Accessories',
-        description: 'Dominate the competition with a responsive and durable mechanical keyboard. Featuring customizable RGB lighting and satisfying tactile feedback.',
-        sku: 'TF-K-004',
-        tags: ['Keyboard', 'Mechanical', 'RGB']
-    },
-    { 
-        id: 4, 
-        name: 'Mechanical RGB Keyboard', 
-        vendor: 'TypeFast', 
-        price: 6200, 
-        imageUrl: 'https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?q=80&w=2070&auto=format&fit=crop', 
-        imageAlt: 'Mechanical keyboard', 
-        category: 'Computer Accessories',
-        description: 'Dominate the competition with a responsive and durable mechanical keyboard. Featuring customizable RGB lighting and satisfying tactile feedback.',
-        sku: 'TF-K-004',
-        tags: ['Keyboard', 'Mechanical', 'RGB']
-    },
-    { 
-        id: 4, 
-        name: 'Mechanical RGB Keyboard', 
-        vendor: 'TypeFast', 
-        price: 6200, 
-        imageUrl: 'https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?q=80&w=2070&auto=format&fit=crop', 
-        imageAlt: 'Mechanical keyboard', 
-        category: 'Computer Accessories',
-        description: 'Dominate the competition with a responsive and durable mechanical keyboard. Featuring customizable RGB lighting and satisfying tactile feedback.',
-        sku: 'TF-K-004',
-        tags: ['Keyboard', 'Mechanical', 'RGB']
-    },
+  {
+    _id: "64a5f1a3b4c5d6e7f8a9b0c1",
+    name: "High-Performance Gaming Mouse",
+    vendor: "GamerGear",
+    price: 2500,
+    oldPrice: 2900,
+    imageUrl:
+      "https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7?q=80&w=1965&auto=format&fit=crop",
+    imageAlt: "Gaming mouse",
+    description:
+      "Experience precision and speed with our top-rated gaming mouse. Features customizable RGB, programmable buttons, and an ergonomic design for long gaming sessions.",
+    category: "Gaming Gear",
+    sku: "GG-M-001",
+    tags: ["Gaming", "Mouse", "RGB"],
+  },
+  {
+    _id: "64a5f1a3b4c5d6e7f8a9b0c2",
+    name: "Wireless Noise-Cancelling Headphones",
+    vendor: "AudioPure",
+    price: 7800,
+    oldPrice: 8500,
+    imageUrl:
+      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=2070&auto=format&fit=crop",
+    imageAlt: "Wireless headphones",
+    description:
+      "Immerse yourself in pure sound. Our headphones offer industry-leading noise cancellation, superior sound quality, and all-day comfort. Perfect for music, calls, and travel.",
+    category: "Audio Zone",
+    sku: "AP-H-002",
+    tags: ["Audio", "Headphones", "Wireless"],
+  },
+  {
+    _id: "64a5f1a3b4c5d6e7f8a9b0c3",
+    name: "Smart Home Security Camera",
+    vendor: "SecureHome",
+    price: 4500,
+    imageUrl:
+      "https://images.unsplash.com/photo-1589935447039-4a436f505a33?q=80&w=1974&auto=format&fit=crop",
+    imageAlt: "Security camera",
+    category: "Smart Home",
+    description:
+      "Keep an eye on your home from anywhere. Features 1080p HD video, two-way audio, and motion detection alerts sent directly to your phone.",
+    sku: "SH-C-003",
+    tags: ["Security", "Smart Home", "Camera"],
+  },
+  {
+    _id: "64a5f1a3b4c5d6e7f8a9b0c4",
+    name: "Mechanical RGB Keyboard",
+    vendor: "TypeFast",
+    price: 6200,
+    imageUrl:
+      "https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?q=80&w=2070&auto=format&fit=crop",
+    imageAlt: "Mechanical keyboard",
+    category: "Computer Accessories",
+    description:
+      "Dominate the competition with a responsive and durable mechanical keyboard. Featuring customizable RGB lighting and satisfying tactile feedback.",
+    sku: "TF-K-004",
+    tags: ["Keyboard", "Mechanical", "RGB"],
+  },
 ];

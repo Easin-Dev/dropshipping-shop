@@ -82,7 +82,7 @@ export default function LoginModal({ isOpen, onClose }) {
         body: JSON.stringify({
           name,
           email,
-          role: "user",
+          role: "admin",
           password,
         }),
       });

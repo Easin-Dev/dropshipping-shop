@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 const products = [
   {
-    id: 1,
+    _id: 1,
     name: 'High-Performance Gaming Mouse',
     vendor: 'GamerGear',
     price: 2500,
@@ -13,7 +13,7 @@ const products = [
     imageAlt: 'A sleek black gaming mouse with RGB lighting.',
   },
   {
-    id: 2,
+    _id: 2,
     name: 'Wireless Noise-Cancelling Headphones',
     vendor: 'AudioPure',
     price: 7800,
@@ -21,7 +21,7 @@ const products = [
     imageAlt: 'A pair of modern white wireless headphones.',
   },
   {
-    id: 3,
+    _id: 3,
     name: 'Smart Home Security Camera',
     vendor: 'SecureHome',
     price: 4500,
@@ -29,7 +29,7 @@ const products = [
     imageAlt: 'A white smart home security camera.',
   },
   {
-    id: 4,
+    _id: 4,
     name: 'Mechanical RGB Keyboard',
     vendor: 'TypeFast',
     price: 6200,
@@ -37,7 +37,7 @@ const products = [
     imageAlt: 'A mechanical keyboard with colorful RGB backlighting.',
   },
    {
-    id: 5,
+    _id: 5,
     name: '4K Ultra HD Action Camera',
     vendor: 'AdvenTour',
     price: 12500,
@@ -45,7 +45,7 @@ const products = [
     imageAlt: 'A compact and durable 4K action camera.',
   },
    {
-    id: 6,
+    _id: 6,
     name: 'Modern Smartwatch with Fitness Tracker',
     vendor: 'FitTrack',
     price: 9800,
@@ -53,7 +53,7 @@ const products = [
     imageAlt: 'A stylish smartwatch displaying health metrics.',
   },
    {
-    id: 7,
+    _id: 7,
     name: 'Portable Bluetooth Speaker',
     vendor: 'SoundWave',
     price: 3400,
@@ -61,7 +61,7 @@ const products = [
     imageAlt: 'A cylindrical portable bluetooth speaker.',
   },
    {
-    id: 8,
+    _id: 8,
     name: 'Ergonomic Gaming Chair',
     vendor: 'ComfortZone',
     price: 18500,
@@ -79,7 +79,7 @@ export default function FeaturedProducts() {
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-10">
           {products.map((product) => (
-            <Link href={`/all_products/${product.id}`} key={product.id} className="group">
+            <Link href={`/all_products/${product._id}`} key={product._id} className="group">
               
               <div className="flex flex-col h-full overflow-hidden">
                

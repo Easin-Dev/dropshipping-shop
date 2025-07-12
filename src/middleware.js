@@ -7,7 +7,6 @@ export async function middleware(req) {
   const token = await getToken({ req, secret });
   const { pathname } = req.nextUrl;
 
-  // Publicly accessible routes
   const publicPaths = ["/login", "/register", "/"];
 
   if (publicPaths.includes(pathname) || pathname.startsWith("/api")) {

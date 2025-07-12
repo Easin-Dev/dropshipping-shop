@@ -16,8 +16,8 @@ export default function ProductGrid({ products }) {
     <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-10">
       {products.map((product) => (
         <Link
-          href={`/all_products/${product.id}`}
-          key={product.id}
+          href={`/all_products/${product._id}`}
+          key={product._id}
           className="group"
         >
           <div className="flex flex-col h-full bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200">
