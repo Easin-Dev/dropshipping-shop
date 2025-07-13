@@ -6,12 +6,10 @@ import { NextResponse } from "next/server";
 export async function GET(request) {
   try {
     await connectMongodb();
-
     const { searchParams } = new URL(request.url);
     const productId = searchParams.get("_id");
 
     if (productId) {
-      // Fetch a single product if an _id is provided
       const product = await Product.findById(productId);
       if (!product) {
         return NextResponse.json(
@@ -21,17 +19,13 @@ export async function GET(request) {
       }
       return NextResponse.json(product, { status: 200 });
     } else {
-      // Fetch all products if no _id is provided
       const products = await Product.find({});
       return NextResponse.json(products, { status: 200 });
     }
   } catch (error) {
     console.error("Error fetching products:", error);
     return NextResponse.json(
-      {
-        message: "An error occurred while fetching products.",
-        error: error.message,
-      },
+      { message: "An error occurred while fetching products." },
       { status: 500 }
     );
   }
@@ -41,58 +35,88 @@ export async function GET(request) {
 export async function POST(request) {
   try {
     const body = await request.json();
-    const {
-      name,
-      description,
-      price,
-      oldPrice,
-      category,
-      vendor,
-      sku,
-      tags,
-      imageUrl,
-    } = body;
-
-    // Basic validation
-    if (!name || !price || !category || !imageUrl) {
-      return NextResponse.json(
-        {
-          message: "Name, Price, Category, and Image URL are required fields.",
-        },
-        { status: 400 }
-      );
-    }
-
     await connectMongodb();
-
-    await Product.create({
-      name,
-      description,
-      price,
-      oldPrice,
-      category,
-      vendor,
-      sku,
-      tags,
-      imageUrl,
-      imageAlt: name, // Using product name as image alt text
-    });
-
+    await Product.create(body);
     return NextResponse.json(
       { message: "Product created successfully!" },
       { status: 201 }
     );
   } catch (error) {
     console.error("Error creating product:", error);
-    // Handle unique SKU error
-    if (error.code === 11000) {
+    return NextResponse.json(
+      { message: "Error creating product", error: error.message },
+      { status: 500 }
+    );
+  }
+}
+
+// --- PUT handler: to update a product ---
+export async function PUT(request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const productId = searchParams.get("_id");
+    if (!productId) {
       return NextResponse.json(
-        { message: "SKU already exists. Please use a unique SKU." },
-        { status: 409 }
+        { message: "Product ID is required for update." },
+        { status: 400 }
+      );
+    }
+    const body = await request.json();
+    await connectMongodb();
+    const updatedProduct = await Product.findByIdAndUpdate(productId, body, {
+      new: true,
+    });
+    if (!updatedProduct) {
+      return NextResponse.json(
+        { message: "Product not found." },
+        { status: 404 }
       );
     }
     return NextResponse.json(
-      { message: "Internal Server Error", error: error.message },
+      { message: "Product updated successfully!", product: updatedProduct },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error updating product:", error);
+    return NextResponse.json(
+      { message: "Error updating product", error: error.message },
+      { status: 500 }
+    );
+  }
+}
+
+// --- নতুন DELETE হ্যান্ডলার: প্রোডাক্ট ডিলেট করার জন্য ---
+export async function DELETE(request) {
+  try {
+    const { searchParams } = new URL(request.url);
+    const productId = searchParams.get("_id");
+
+    if (!productId) {
+      return NextResponse.json(
+        { message: "Product ID is required for deletion." },
+        { status: 400 }
+      );
+    }
+
+    await connectMongodb();
+
+    const deletedProduct = await Product.findByIdAndDelete(productId);
+
+    if (!deletedProduct) {
+      return NextResponse.json(
+        { message: "Product not found." },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(
+      { message: "Product deleted successfully!" },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error deleting product:", error);
+    return NextResponse.json(
+      { message: "Error deleting product", error: error.message },
       { status: 500 }
     );
   }
