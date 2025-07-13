@@ -7,7 +7,6 @@ import { useEffect } from "react";
 export default function OrderSuccessPage() {
   // Optional: Add confetti effect for celebration
   useEffect(() => {
-    // Apni chaile 'canvas-confetti' library use kore ekta sundor effect dite paren
     console.log("Order success page loaded!");
   }, []);
 

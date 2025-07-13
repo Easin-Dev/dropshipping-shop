@@ -1,9 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/component/HeaderAllFile/Header";
-import Footer from "@/component/HeaderAllFile/Footer";
 import { CartProvider } from "@/context/cartContext";
 import AuthProvider from "@/component/AuthProvider";
+// নতুন ConditionalLayout কম্পোনেন্টটি ইম্পোর্ট করুন
+import ConditionalLayout from "@/component/ConditionalLayout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,13 +28,8 @@ export default function RootLayout({ children }) {
       >
         <AuthProvider>
           <CartProvider>
-            <div className="flex flex-col min-h-screen">
-              <Header />
-
-              <main className="flex-grow">{children}</main>
-
-              <Footer />
-            </div>
+            {/* FIX: এখানে সরাসরি Header/Footer না দেখিয়ে ConditionalLayout ব্যবহার করা হচ্ছে */}
+            <ConditionalLayout>{children}</ConditionalLayout>
           </CartProvider>
         </AuthProvider>
       </body>

@@ -51,7 +51,6 @@ export default function CartDrawer({ isOpen, onClose }) {
             <p className="text-gray-500">
               Looks like you haven't added anything yet.
             </p>
-
             <Link href="/all_products">
               <button
                 onClick={handleClose}
@@ -65,7 +64,8 @@ export default function CartDrawer({ isOpen, onClose }) {
           <>
             <div className="flex-grow overflow-y-auto p-4 space-y-4">
               {cartItems.map((item) => (
-                <div key={item.id} className="flex gap-4">
+                // FIX: key hishebe item._id use kora hocche
+                <div key={item._id} className="flex gap-4">
                   <div className="relative w-24 h-24 rounded-md overflow-hidden border">
                     <Image
                       src={item.imageUrl}
@@ -80,7 +80,8 @@ export default function CartDrawer({ isOpen, onClose }) {
                         {item.name}
                       </h3>
                       <button
-                        onClick={() => removeFromCart(item.id)}
+                        // FIX: item._id pathano hocche
+                        onClick={() => removeFromCart(item._id)}
                         className="text-gray-400 hover:text-red-500 flex-shrink-0 hover:border rounded-full cursor-pointer"
                       >
                         <X size={18} />
@@ -90,7 +91,8 @@ export default function CartDrawer({ isOpen, onClose }) {
                     <div className="flex items-center justify-between mt-auto">
                       <div className="flex items-center border rounded-md">
                         <button
-                          onClick={() => updateQuantity(item.id, -1)}
+                          // FIX: item._id pathano hocche
+                          onClick={() => updateQuantity(item._id, -1)}
                           className="px-2 py-1"
                         >
                           <Minus size={14} />
@@ -99,7 +101,8 @@ export default function CartDrawer({ isOpen, onClose }) {
                           {item.quantity}
                         </span>
                         <button
-                          onClick={() => updateQuantity(item.id, 1)}
+                          // FIX: item._id pathano hocche
+                          onClick={() => updateQuantity(item._id, 1)}
                           className="px-2 py-1"
                         >
                           <Plus size={14} />
@@ -121,12 +124,13 @@ export default function CartDrawer({ isOpen, onClose }) {
               <p className="text-xs text-gray-500 text-center">
                 Shipping and taxes calculated at checkout.
               </p>
-              <Link href="/add_cart">
+              {/* FIX: Link-ti checkout page-e jabe */}
+              <Link href="/checkout">
                 <button
                   onClick={handleClose}
                   className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 font-bold cursor-pointer"
                 >
-                  View Cart & Checkout
+                  Proceed to Checkout
                 </button>
               </Link>
             </div>
