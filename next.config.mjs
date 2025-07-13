@@ -7,6 +7,7 @@ const nextConfig = {
       "images.unsplash.com",
       "i.ibb.co",
       "i.pravatar.cc",
+      "dropshop.com.bd",
     ],
   },
 };

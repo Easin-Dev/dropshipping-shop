@@ -6,14 +6,10 @@ import { AdminSidebar } from "@/component/admin/AdminSidebar";
 import { AdminHeader } from "@/component/admin/AdminHeader";
 import { DashboardContent } from "@/component/admin/DashboardContent";
 import { OrderContent } from "@/component/admin/OrderContent";
+// FIX: প্লেসহোল্ডারের পরিবর্তে আসল ProductsContent কম্পোনেন্টটি ইম্পোর্ট করা হলো
+import { ProductsContent } from "@/component/admin/ProductsContent";
 
 // অন্যান্য ট্যাবগুলোর জন্য প্লেসহোল্ডার কম্পোনেন্ট
-// ভবিষ্যতে আপনি এগুলোকে OrderContent-এর মতো ডায়নামিক করতে পারবেন
-const ProductsContent = () => (
-  <div className="bg-white p-6 rounded-xl shadow-md">
-    Products Management Section
-  </div>
-);
 const ShippingContent = () => (
   <div className="bg-white p-6 rounded-xl shadow-md">
     Shipping Management Section
@@ -40,7 +36,7 @@ export default function AdminDashboard() {
       case "Order":
         return <OrderContent />;
       case "Products":
-        return <ProductsContent />;
+        return <ProductsContent />; // এখন এখানে আসল فرم কম্পোনেন্টটি দেখানো হবে
       case "Shipping":
         return <ShippingContent />;
       case "Payments":
